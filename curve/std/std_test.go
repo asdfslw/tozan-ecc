@@ -25,6 +25,13 @@ func Test(t *testing.T) {
 			"96e867b5595cc498a921137488824d6e2660a0653779494801dc069d9eb39f5f",
 		},
 		{
+			std.SECP256R1,
+			"e716aed2cf069e4d997789672e6d6bd2508676f2f4fd0a64f077e8daa245573f",
+			"353663e694fc72ab5912b06687b9a851d13d0df2fa07c9b3505fc26b469218d1",
+			"f8f5dccf4c6a93d7a4a54daafaa3449aa87a8069875405d43725c5dce392d805",
+			"e58176cf66d63054389d3e336461327351f3da64a52143ba026619516cda02fa",
+		},
+		{
 			std.STARKNET,
 			"029f26828c9f9616373509c0ab067a1bbe3e4ca7440e0a238bb3f1c7e396286e",
 			"01ed0925b1705cbfc9c7ba9aa0b6950721e330b4ca6a06e08b3134f3c9ff31a2",
@@ -37,6 +44,13 @@ func Test(t *testing.T) {
 			"59a976ab2c01a81a91f1a56c75ccc77a9e1e9e878e9fe9c3952080a6805b20d5",
 			"0af367956af630266b1cc760154256ed79da960dddca9d72a1e8cf27d8d43a77",
 			"21108d900134d3b3708dd28ace96b0b23dda9100e4b6a62a8131bd2f2ba408c5",
+		},
+		{
+			std.ZCASH_JUBJUB,
+			"4b44cd10d4815a227d627b7120a2e5714e6ad9ad487fae8a32b5058a6399d20d",
+			"1ff8fe69e5eac105b01d71ec953d0e574e0842bfc9b69c9a0a8c0735f62e71af",
+			"23b8343831d2c81d5eb18dc8099ac3d3a4dcc09ead647293ea6232f5acb82224",
+			"67798678674e6695b78266382521efb812230b220f4850c4c698787f0433f482",
 		},
 		{
 			std.FOURQ,
@@ -56,6 +70,7 @@ func Test(t *testing.T) {
 		sk, _ := new(big.Int).SetString("1000", 16)
 		PK := c.ScalarMult(G, sk)
 
+		fmt.Printf("P bitLen = %v\n", c.Field().P().BitLen())
 		baseFieldBytes := (c.Field().P().BitLen() + 7) / 8
 
 		// 点的序列化

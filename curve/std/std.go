@@ -12,10 +12,12 @@ import (
 type ID string
 
 const (
-	SECP256K1 ID = "secp256k1"
-	STARKNET  ID = "starknet"
-	ED25519   ID = "ed25519"
-	FOURQ     ID = "fourQ"
+	SECP256K1    ID = "secp256k1"
+	SECP256R1    ID = "secp256r1"
+	STARKNET     ID = "starknet"
+	ED25519      ID = "ed25519"
+	ZCASH_JUBJUB ID = "zcash_jubjub"
+	FOURQ        ID = "fourQ"
 )
 
 type params struct {
@@ -33,7 +35,7 @@ var Curves []ID
 var stdCurves map[ID]*params
 
 func init() {
-	Curves = make([]ID, 0, 4)
+	Curves = make([]ID, 0, 6)
 	stdCurves = make(map[ID]*params)
 
 	{
@@ -51,6 +53,22 @@ func init() {
 		x.SetString("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", 16)
 		y.SetString("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", 16)
 		SECP256K1.register(&params{model: C.Weierstrass, p: p, m: 1, a: a, b: b, r: r, h: 1, x: x, y: y})
+	}
+	{
+		p := new(big.Int)
+		a := new(big.Int)
+		b := new(big.Int)
+		r := new(big.Int)
+		x := new(big.Int)
+		y := new(big.Int)
+
+		p.SetString("FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF", 16)
+		a.SetString("FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC", 16)
+		b.SetString("5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B", 16)
+		r.SetString("FFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551", 16)
+		x.SetString("6B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296", 16)
+		y.SetString("4FE342E2FE1A7F9B8EE7EB4A7C0F9E162BCE33576B315ECECBB6406837BF51F5", 16)
+		SECP256R1.register(&params{model: C.Weierstrass, p: p, m: 1, a: a, b: b, r: r, h: 1, x: x, y: y})
 	}
 	{
 		p := new(big.Int)
@@ -83,6 +101,22 @@ func init() {
 		x.SetString("216936d3cd6e53fec0a4e231fdd6dc5c692cc7609525a7b2c9562d608f25d51a", 16)
 		y.SetString("6666666666666666666666666666666666666666666666666666666666666658", 16)
 		ED25519.register(&params{model: C.TwistedEdwards, p: p, m: 1, a: a, b: b, r: r, h: 8, x: x, y: y})
+	}
+	{
+		p := new(big.Int)
+		a := new(big.Int)
+		b := new(big.Int)
+		r := new(big.Int)
+		x := new(big.Int)
+		y := new(big.Int)
+
+		p.SetString("73eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000001", 16)
+		a.SetString("73eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000000", 16)
+		b.SetString("2a9318e74bfa2b48f5fd9207e6bd7fd4292d7f6d37579d2601065fd6d6343eb1", 16)
+		r.SetString("0e7db4ea6533afa906673b0101343b00a6682093ccc81082d0970e5ed6f72cb7", 16)
+		x.SetString("0926d4f32059c712d418a7ff26753b6ad5b9a7d3ef8e282747bf46920a95a753", 16)
+		y.SetString("57a1019e6de9b67553bb37d0c21cfd056d65674dcedbddbc305632adaaf2b530", 16)
+		ZCASH_JUBJUB.register(&params{model: C.TwistedEdwards, p: p, m: 1, a: a, b: b, r: r, h: 8, x: x, y: y})
 	}
 	{
 		p := new(big.Int)
