@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"reflect"
 )
 
 // fpElt is a prime field element.
@@ -70,8 +71,9 @@ func (f fp) Ext() uint            { return uint(1) }
 func (f fp) BitLen() int          { return f.p.BitLen() }
 func (f fp) Elt(in interface{}) Elt {
 	var n *big.Int
-	if v, ok := in.([]interface{}); ok && len(v) == 1 {
-		n = FromType(v[0])
+	v := reflect.ValueOf(in)
+	if (v.Kind() == reflect.Slice || v.Kind() == reflect.Array) && v.Len() == 1 {
+		n = FromType(v.Index(0).Interface())
 	} else {
 		n = FromType(in)
 	}
