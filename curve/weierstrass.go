@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/big"
 
-	GF "github.com/armfazh/tozan-ecc/field"
+	GF "github.com/asdfslw/tozan-ecc/field"
 )
 
 // weCurve is a Weierstrass curve

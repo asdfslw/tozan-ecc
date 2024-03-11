@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"math/big"
 
-	C "github.com/armfazh/tozan-ecc/curve"
-	GF "github.com/armfazh/tozan-ecc/field"
+	C "github.com/asdfslw/tozan-ecc/curve"
+	GF "github.com/asdfslw/tozan-ecc/field"
 )
 
 // ID is an identifier of a toy curve.

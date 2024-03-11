@@ -3,7 +3,7 @@ package std_test
 import (
 	"encoding/hex"
 	"fmt"
-	"github.com/armfazh/tozan-ecc/curve/std"
+	"github.com/asdfslw/tozan-ecc/curve/std"
 	"math/big"
 	"testing"
 )

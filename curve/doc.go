@@ -5,7 +5,7 @@ package curve
 import (
 	"math/big"
 
-	GF "github.com/armfazh/tozan-ecc/field"
+	GF "github.com/asdfslw/tozan-ecc/field"
 )
 
 // Point represents an elliptic curve point.

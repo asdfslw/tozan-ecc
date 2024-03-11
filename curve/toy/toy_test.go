@@ -3,7 +3,7 @@ package toy_test
 import (
 	"testing"
 
-	"github.com/armfazh/tozan-ecc/curve/toy"
+	"github.com/asdfslw/tozan-ecc/curve/toy"
 )
 
 func TestGenerate(t *testing.T) {

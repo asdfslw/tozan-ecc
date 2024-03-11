@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/big"
 
-	GF "github.com/armfazh/tozan-ecc/field"
+	GF "github.com/asdfslw/tozan-ecc/field"
 )
 
 // teCurve is a twisted Edwards curve

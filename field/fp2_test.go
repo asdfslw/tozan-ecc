@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	GF "github.com/armfazh/tozan-ecc/field"
+	GF "github.com/asdfslw/tozan-ecc/field"
 )
 
 func TestGeneratorF2(t *testing.T) {

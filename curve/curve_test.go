@@ -3,8 +3,8 @@ package curve_test
 import (
 	"testing"
 
-	C "github.com/armfazh/tozan-ecc/curve"
-	"github.com/armfazh/tozan-ecc/curve/toy"
+	C "github.com/asdfslw/tozan-ecc/curve"
+	"github.com/asdfslw/tozan-ecc/curve/toy"
 )
 
 func TestCurves(t *testing.T) {
