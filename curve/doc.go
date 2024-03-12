@@ -24,6 +24,7 @@ type EllCurve interface {
 	Order() *big.Int
 	Cofactor() *big.Int
 	NewPoint(x, y GF.Elt) Point
+	PointX2Y(x GF.Elt) (y GF.Elt, ok bool)
 	// Predicates
 	IsOnCurve(Point) bool
 	IsEqual(EllCurve) bool

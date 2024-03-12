@@ -66,6 +66,17 @@ func (e *weCurve) EvalRHS(x GF.Elt) GF.Elt {
 	t0 = F.Mul(t0, x)     // (x^2+A)x
 	return F.Add(t0, e.B) // (x^2+A)x+B
 }
+
+func (e *weCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
+	y2 := e.EvalRHS(x)
+	F := e.F
+	if F.IsSquare(y2) {
+		y := F.Sqrt(y2)
+		return y, true
+	}
+	return nil, false
+}
+
 func (e *weCurve) Identity() Point { return &infPoint{} }
 func (e *weCurve) Add(p, q Point) Point {
 	if p.IsIdentity() {

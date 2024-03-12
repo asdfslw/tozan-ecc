@@ -53,6 +53,11 @@ func (e *mtCurve) IsOnCurve(p Point) bool {
 	t1 = F.Mul(t1, e.B)     // By^2
 	return F.AreEqual(t0, t1)
 }
+
+func (e *mtCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
+	return nil, false
+}
+
 func (e *mtCurve) Identity() Point { return &infPoint{} }
 func (e *mtCurve) Add(p, q Point) Point {
 	if p.IsIdentity() {

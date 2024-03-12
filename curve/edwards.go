@@ -36,6 +36,11 @@ func (e *teCurve) IsValid() bool {
 	cond3 := !F.IsZero(e.D)        // D != 0
 	return cond1 && cond2 && cond3
 }
+
+func (e *teCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
+	return nil, false
+}
+
 func (e *teCurve) IsEqual(ec EllCurve) bool {
 	e0 := ec.(*teCurve)
 	return e.F.IsEqual(e0.F) && e.F.AreEqual(e.A, e0.A) && e.F.AreEqual(e.D, e0.D)
