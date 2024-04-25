@@ -77,6 +77,10 @@ func (e *weCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
 	return nil, false
 }
 
+func (e *weCurve) PointY2X(y GF.Elt) (x GF.Elt, ok bool) {
+	return nil, false
+}
+
 func (e *weCurve) Identity() Point { return &infPoint{} }
 func (e *weCurve) Add(p, q Point) Point {
 	if p.IsIdentity() {

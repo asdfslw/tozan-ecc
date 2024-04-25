@@ -15,6 +15,7 @@ const (
 	SECP256K1    ID = "secp256k1"
 	SECP256R1    ID = "secp256r1"
 	STARKNET     ID = "starknet"
+	PALLAS       ID = "Pallas"
 	ED25519      ID = "ed25519"
 	ZCASH_JUBJUB ID = "zcash_jubjub"
 	FOURQ        ID = "fourQ"
@@ -35,7 +36,7 @@ var Curves []ID
 var stdCurves map[ID]*params
 
 func init() {
-	Curves = make([]ID, 0, 6)
+	Curves = make([]ID, 0, 7)
 	stdCurves = make(map[ID]*params)
 
 	{
@@ -85,6 +86,22 @@ func init() {
 		x.SetString("01ef15c18599971b7beced415a40f0c7deacfd9b0d1819e03d723d8bc943cfca", 16)
 		y.SetString("005668060aa49730b7be4801df46ec62de53ecd11abe43a32873000c36e8dc1f", 16)
 		STARKNET.register(&params{model: C.Weierstrass, p: p, m: 1, a: a, b: b, r: r, h: 1, x: x, y: y})
+	}
+	{
+		p := new(big.Int)
+		a := new(big.Int)
+		b := new(big.Int)
+		r := new(big.Int)
+		x := new(big.Int)
+		y := new(big.Int)
+
+		p.SetString("40000000000000000000000000000000224698fc094cf91b992d30ed00000001", 16)
+		a.SetString("00", 16)
+		b.SetString("05", 10)
+		r.SetString("40000000000000000000000000000000224698fc0994a8dd8c46eb2100000001", 16)
+		x.SetString("01", 16)
+		y.SetString("1b74b5a30a12937c53dfa9f06378ee548f655bd4333d477119cf7a23caed2abb", 16)
+		PALLAS.register(&params{model: C.Weierstrass, p: p, m: 1, a: a, b: b, r: r, h: 1, x: x, y: y})
 	}
 	{
 		p := new(big.Int)

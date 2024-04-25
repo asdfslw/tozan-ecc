@@ -58,6 +58,10 @@ func (e *mtCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
 	return nil, false
 }
 
+func (e *mtCurve) PointY2X(y GF.Elt) (x GF.Elt, ok bool) {
+	return nil, false
+}
+
 func (e *mtCurve) Identity() Point { return &infPoint{} }
 func (e *mtCurve) Add(p, q Point) Point {
 	if p.IsIdentity() {

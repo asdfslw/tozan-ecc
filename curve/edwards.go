@@ -41,6 +41,24 @@ func (e *teCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
 	return nil, false
 }
 
+func (e *teCurve) PointY2X(y GF.Elt) (x GF.Elt, ok bool) {
+	F := e.F
+
+	y2 := F.Sqr(y)
+	t0 := F.Sub(y2, F.One()) // y^2-1
+
+	t1 := F.Mul(e.D, y2)
+	t1 = F.Sub(t1, e.A) // d*y^2 - a
+
+	t1 = F.Inv(t1)
+	x2 := F.Mul(t0, t1)
+	if F.IsSquare(x2) {
+		x = F.Sqrt(x2)
+		return x, true
+	}
+	return nil, false
+}
+
 func (e *teCurve) IsEqual(ec EllCurve) bool {
 	e0 := ec.(*teCurve)
 	return e.F.IsEqual(e0.F) && e.F.AreEqual(e.A, e0.A) && e.F.AreEqual(e.D, e0.D)

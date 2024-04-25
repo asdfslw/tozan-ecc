@@ -45,6 +45,10 @@ func (e *wcCurve) PointX2Y(x GF.Elt) (y GF.Elt, ok bool) {
 	return nil, false
 }
 
+func (e *wcCurve) PointY2X(y GF.Elt) (x GF.Elt, ok bool) {
+	return nil, false
+}
+
 func (e *wcCurve) IsEqual(ec EllCurve) bool {
 	e0 := ec.(*weCurve)
 	return e.F.IsEqual(e0.F) && e.F.AreEqual(e.A, e0.A) && e.F.AreEqual(e.B, e0.B)

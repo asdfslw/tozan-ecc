@@ -39,6 +39,13 @@ func Test(t *testing.T) {
 			"06772826cd306607f55f25bea21e93fc8438fbe216887bbe89a12135a768b924",
 		},
 		{
+			std.PALLAS,
+			"0e0c95dfe7ac266485f345bc6ab07199804c41ebad1370fc959bd70dbdc225ea",
+			"2e975362a3ea41e970d5ca407851a156debf739e560ae10819ecac82e7996ac5",
+			"1d0132deb462e9031e74c914642e11431efab787c9e0a286f716f750fc88afca",
+			"2587890051e171fe153c105286b6e5762c58b424729ac930b5105136dbca7626",
+		},
+		{
 			std.ED25519,
 			"7d13c0248b891b47eb524f2692008e2f97b199bac426cb5902b9003a29ded6ea",
 			"59a976ab2c01a81a91f1a56c75ccc77a9e1e9e878e9fe9c3952080a6805b20d5",
@@ -98,6 +105,19 @@ func Test(t *testing.T) {
 		fmt.Printf("Q.y = %s\n", strY)
 		if strX != test.wantQx || strY != test.wantQy {
 			panic("err")
+		}
+	}
+
+	c, G, _ := std.ED25519.New()
+	x, ok := c.PointY2X(G.Y())
+	if !ok {
+		panic("ok = false")
+	}
+	F := c.Field()
+	if !F.AreEqual(x, G.X()) {
+		x = F.Neg(x)
+		if !F.AreEqual(x, G.X()) {
+			panic("PointY2X error")
 		}
 	}
 }

@@ -24,7 +24,8 @@ type EllCurve interface {
 	Order() *big.Int
 	Cofactor() *big.Int
 	NewPoint(x, y GF.Elt) Point
-	PointX2Y(x GF.Elt) (y GF.Elt, ok bool)
+	PointX2Y(x GF.Elt) (y GF.Elt, ok bool) // 仅 Weierstrass 曲线实现了此接口
+	PointY2X(y GF.Elt) (x GF.Elt, ok bool) // 仅 TwistedEdwards 曲线实现了此接口
 	// Predicates
 	IsOnCurve(Point) bool
 	IsEqual(EllCurve) bool
